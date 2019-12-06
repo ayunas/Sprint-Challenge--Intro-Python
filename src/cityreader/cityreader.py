@@ -1,5 +1,35 @@
 # Create a class to hold a city location. Call the class "City". It should have
 # fields for name, lat and lon (representing latitude and longitude).
+import csv
+
+csv_file = open('cities.csv')
+csv_reader = csv.reader(csv_file, delimiter=',')
+line_count = 0
+
+for row in csv_reader:
+  
+  if line_count == 0:
+    print(f"Column names are {', '.join(row)}") #first row of csv file are column headings
+    line_count += 1  
+  else:
+    print(f'\nCity: {row[0]}, State: {row[1]}, County: {row[2]}\n')
+    print(f'Latitude: {row[3]}, Longitude: {row[4]}\n')
+    print(f'Population: {row[5]}, Density: {row[6]}\n')
+    print(f'Timezone: {row[7]}\n')
+    print(f'Zip codes: {row[8]}\n')
+    # for zip in row[8]:
+    #   print(zip)
+    line_count += 1
+
+print(f"processed {line_count} lines")
+
+class City:
+  def __init__(self,name,lat,lon):
+    self.name = name
+    self.lat = lat
+    self.lon = lon
+  
+
 
 
 # We have a collection of US cities with population over 750,000 stored in the
