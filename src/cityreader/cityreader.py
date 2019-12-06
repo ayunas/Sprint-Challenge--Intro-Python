@@ -2,9 +2,51 @@
 # fields for name, lat and lon (representing latitude and longitude).
 import csv
 
-csv_file = open('cities.csv')
-csv_reader = csv.reader(csv_file, delimiter=',')
-line_count = 0
+# with open('cities.csv') as csv_file:
+#   csv_reader = csv.reader(csv_file, delimiter=',')
+
+# line_count = 0
+# for row in csv_reader:
+#   if line_count == 0:
+#     print(f"Column names are {', '.join(row)}") #first row of _reader file are column headings
+#     line_count += 1  
+#   else:
+#     print(f'\nCity: {row[0]}, State: {row[1]}, County: {row[2]}\n')
+#     print(f'Latitude: {row[3]}, Longitude: {row[4]}\n')
+#     print(f'Population: {row[5]}, Density: {row[6]}\n')
+#     print(f'Timezone: {row[7]}\n')
+#     print(f'Zip codes: {row[8]}\n')
+#     # for zip in row[8]:
+#     #   print(zip)
+#     line_count += 1
+# print(f"processed {line_count} lines")
+
+
+def printCSV():
+  #printing csv file contents formatted to screen:
+  with open('cities.csv') as csv_file:
+    csv_reader = csv.reader(csv_file,delimiter=',')
+
+    line_count = 0
+    
+    for row in csv_reader:
+      # print(type(row))
+      if line_count == 0:
+        print(f"Column names are {', '.join(row)}") #first row of csv file are column headings
+        line_count += 1  
+      else:
+        print(f'\nCity: {row[0]}, State: {row[1]}, County: {row[2]}\n')
+        print(f'Latitude: {row[3]}, Longitude: {row[4]}\n')
+        print(f'Population: {row[5]}, Density: {row[6]}\n')
+        print(f'Timezone: {row[7]}\n')
+        print(f'Zip codes: {row[8]}\n')
+        # for zip in row[8]:
+        #   print(zip)
+        line_count += 1
+      
+    print(f"processed {line_count} lines")
+
+
 
 class City:
   def __init__(self,city,state,county,lat,lon,population,density,timezone,zips):
@@ -20,54 +62,38 @@ class City:
     return f'<City: {self.city}>'
 
 
-line_count = 0
-cities = []
-for row in csv_reader:
-  if line_count == 0:
-    line_count += 1
-  else:
-    c = City(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8])
-    cities.append(c)
-    line_count += 1
 
-line_count = 0
-for row in csv_reader:
-  if line_count == 0:
-    print(f"Column names are {', '.join(row)}") #first row of _reader file are column headings
-    line_count += 1  
-  else:
-    print(f'\nCity: {row[0]}, State: {row[1]}, County: {row[2]}\n')
-    print(f'Latitude: {row[3]}, Longitude: {row[4]}\n')
-    print(f'Population: {row[5]}, Density: {row[6]}\n')
-    print(f'Timezone: {row[7]}\n')
-    print(f'Zip codes: {row[8]}\n')
-    # for zip in row[8]:
-    #   print(zip)
-    line_count += 1
-print(f"processed {line_count} lines")
+# line_count = 0
+# cities = []
+# for row in _reader_reader:
+#   if line_count == 0:
+#     line_count += 1
+#   else:
+#     c = City(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8])
+#     cities.append(c)
+#     line_count += 1
 
+def cityMaker():
+  cities = []
+  with open('cities.csv') as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    line_count = 0
+    for row in csv_reader:
+      if line_count == 0:
+        line_count += 1
+      else:
+        c = City(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8])
+        cities.append(c)
+        line_count += 1
+  return cities
 
-def printCSV(csv):
-  #printing csv file contents formatted to screen:
-  # for row in csv_reader:
-  #   print(row)
-  line_count = 0
-  for row in csv:
-    if line_count == 0:
-      print(f"Column names are {', '.join(row)}") #first row of csv file are column headings
-      line_count += 1  
-    else:
-      print(f'\nCity: {row[0]}, State: {row[1]}, County: {row[2]}\n')
-      print(f'Latitude: {row[3]}, Longitude: {row[4]}\n')
-      print(f'Population: {row[5]}, Density: {row[6]}\n')
-      print(f'Timezone: {row[7]}\n')
-      print(f'Zip codes: {row[8]}\n')
-      # for zip in row[8]:
-      #   print(zip)
-      line_count += 1
-  print(f"processed {line_count} lines")
+# print(cities)
+# 
+# print(cities)
+cities = cityMaker()
+print(cities)
+printCSV()
 
-printCSV(csv_reader)
 
 #printing csv file contents formatted to screen:
 # for row in csv:
