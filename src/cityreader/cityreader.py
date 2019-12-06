@@ -6,10 +6,34 @@ csv_file = open('cities.csv')
 csv_reader = csv.reader(csv_file, delimiter=',')
 line_count = 0
 
+class City:
+  def __init__(self,city,state,county,lat,lon,population,density,timezone,zips):
+    self.city = city
+    self.lat = lat
+    self.lon = lon
+    self.population = population
+    self.density = density
+    self.timezone = timezone
+    self.zips = zips
+
+  def __repr__(self):
+    return f'<City: {self.city}>'
+
+
+line_count = 0
+cities = []
 for row in csv_reader:
-  
   if line_count == 0:
-    print(f"Column names are {', '.join(row)}") #first row of csv file are column headings
+    line_count += 1
+  else:
+    c = City(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8])
+    cities.append(c)
+    line_count += 1
+
+line_count = 0
+for row in csv_reader:
+  if line_count == 0:
+    print(f"Column names are {', '.join(row)}") #first row of _reader file are column headings
     line_count += 1  
   else:
     print(f'\nCity: {row[0]}, State: {row[1]}, County: {row[2]}\n')
@@ -20,14 +44,51 @@ for row in csv_reader:
     # for zip in row[8]:
     #   print(zip)
     line_count += 1
-
 print(f"processed {line_count} lines")
 
-class City:
-  def __init__(self,name,lat,lon):
-    self.name = name
-    self.lat = lat
-    self.lon = lon
+
+def printCSV(csv):
+  #printing csv file contents formatted to screen:
+  # for row in csv_reader:
+  #   print(row)
+  line_count = 0
+  for row in csv:
+    if line_count == 0:
+      print(f"Column names are {', '.join(row)}") #first row of csv file are column headings
+      line_count += 1  
+    else:
+      print(f'\nCity: {row[0]}, State: {row[1]}, County: {row[2]}\n')
+      print(f'Latitude: {row[3]}, Longitude: {row[4]}\n')
+      print(f'Population: {row[5]}, Density: {row[6]}\n')
+      print(f'Timezone: {row[7]}\n')
+      print(f'Zip codes: {row[8]}\n')
+      # for zip in row[8]:
+      #   print(zip)
+      line_count += 1
+  print(f"processed {line_count} lines")
+
+printCSV(csv_reader)
+
+#printing csv file contents formatted to screen:
+# for row in csv:
+  
+#   if line_count == 0:
+#     print(f"Column names are {', '.join(row)}") #first row of csv file are column headings
+#     line_count += 1  
+#   else:
+#     print(f'\nCity: {row[0]}, State: {row[1]}, County: {row[2]}\n')
+#     print(f'Latitude: {row[3]}, Longitude: {row[4]}\n')
+#     print(f'Population: {row[5]}, Density: {row[6]}\n')
+#     print(f'Timezone: {row[7]}\n')
+#     print(f'Zip codes: {row[8]}\n')
+#     # for zip in row[8]:
+#     #   print(zip)
+#     line_count += 1
+
+# print(f"processed {line_count} lines")
+
+
+
   
 
 
@@ -44,20 +105,20 @@ class City:
 #
 # Note that the first line of the CSV is header that describes the fields--this
 # should not be loaded into a City object.
-cities = []
+# cities = []
 
-def cityreader(cities=[]):
-  # TODO Implement the functionality to read from the 'cities.csv' file
-  # For each city record, create a new City instance and add it to the 
-  # `cities` list
+# def cityreader(cities=[]):
+#   # TODO Implement the functionality to read from the 'cities.csv' file
+#   # For each city record, create a new City instance and add it to the 
+#   # `cities`list
     
-    return cities
+#     return cities
 
-cityreader(cities)
+# cityreader(cities)
 
-# Print the list of cities (name, lat, lon), 1 record per line.
-for c in cities:
-    print(c)
+# # Print the list of cities (name, lat, lon), 1 record per line.
+# for c in cities:
+#     print(c) 
 
 # STRETCH GOAL!
 #

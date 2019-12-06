@@ -15,8 +15,6 @@ class GroundVehicle(object):  #explictly passing in object to remember where the
 
 gv = GroundVehicle()
 
-
-
 # Subclass Motorcycle from GroundVehicle.
 #
 # Make it so when you instantiate a Motorcycle, it automatically sets the number
@@ -39,6 +37,7 @@ m = Motorcycle()
 print('motorcycle wheels', m.num_wheels)
 
 
+
 vehicles = [
     GroundVehicle(),
     GroundVehicle(),
@@ -51,4 +50,8 @@ vehicles = [
 for v in vehicles:
     print(v.drive())
 
-
+#VSCode highlighted comments to flag to come back or whatever.
+#FIXME
+#BUG
+#TODO
+#XXX
