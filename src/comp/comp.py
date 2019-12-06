@@ -71,10 +71,8 @@ print('\nolder humans using map\n')
 print(list(olderhumans))
 
 print('\nolder humans using list comprehension:\n')
-olderhumanscomprehension = [Human(h.name,h.age+5) for h in humans]  #using list comp
-print(olderhumanscomprehension)
-
-
+g = [Human(h.name.upper(),h.age+5) for h in humans]  #using list comp
+print(g)
 
 # olderhumans = [*humans]
 # print('copy of humans array', olderhumans)
@@ -90,5 +88,9 @@ print(olderhumanscomprehension)
 
 print("Square root of ages:")
 import math
-h = [round(math.sqrt(human.age),2) for human in humans]
+h = [math.sqrt(h.age) for h in humans]
+hrounded = [round(math.sqrt(human.age),2) for human in humans]  #sqrt with rounding
 print(h)
+print(hrounded)
+
+
