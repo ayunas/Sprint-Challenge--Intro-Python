@@ -25,7 +25,7 @@ class GroundVehicle(Vehicle):
 class FlightVehicle(Vehicle):
     #baes class for flight vehicles
     def __repr__(self):
-        return f'<FlightVehicle'
+        return f'<FlightVehicle>'
 
 class Car(GroundVehicle):
     def __repr__(self):
