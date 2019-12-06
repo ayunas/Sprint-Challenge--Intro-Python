@@ -2,25 +2,42 @@
 # fields for name, lat and lon (representing latitude and longitude).
 import csv
 
-# with open('cities.csv') as csv_file:
-#   csv_reader = csv.reader(csv_file, delimiter=',')
+class City:
+  def __init__(self,city,state,county,lat,lon,population,density,timezone,zips):
+    self.city = city
+    self.state = state
+    self.county = county
+    self.lat = lat
+    self.lon = lon
+    self.population = population
+    self.density = density
+    self.timezone = timezone
+    self.zips = zips
 
-# line_count = 0
-# for row in csv_reader:
-#   if line_count == 0:
-#     print(f"Column names are {', '.join(row)}") #first row of _reader file are column headings
-#     line_count += 1  
-#   else:
-#     print(f'\nCity: {row[0]}, State: {row[1]}, County: {row[2]}\n')
-#     print(f'Latitude: {row[3]}, Longitude: {row[4]}\n')
-#     print(f'Population: {row[5]}, Density: {row[6]}\n')
-#     print(f'Timezone: {row[7]}\n')
-#     print(f'Zip codes: {row[8]}\n')
-#     # for zip in row[8]:
-#     #   print(zip)
-#     line_count += 1
-# print(f"processed {line_count} lines")
+  def __repr__(self):
+    return f'<City: {self.city}>'
+  
+  def __str__(self):
+    return f'''\nCity: {self.city}, State: {self.state}, County: {self.county}\n\nLatitude: {self.lat}, Longitude: {self.lon}\n\nPopulation: {self.population}, Density: {self.density}\n\nTimezone: {self.timezone}\n\nZip codes: {self.zips}\n\n'''
+        # print(f'\nCity: {self.city}, State: {self.state}, County: {self.county}\n')
+        # print(f'Latitude: {self.lat}, Longitude: {self.lon}\n')
+        # print(f'Population: {self.population}, Density: {self.density}\n')
+        # print(f'Timezone: {self.timezone}\n')
+        # print(f'Zip codes: {self.zips}\n')
 
+def cityMaker():
+  cities = []
+  with open('cities.csv') as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    line_count = 0
+    for row in csv_reader:
+      if line_count == 0:
+        line_count += 1
+      else:
+        c = City(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8])
+        cities.append(c)
+        line_count += 1
+  return cities
 
 def printCSV():
   #printing csv file contents formatted to screen:
@@ -46,76 +63,10 @@ def printCSV():
       
     print(f"processed {line_count} lines")
 
-
-
-class City:
-  def __init__(self,city,state,county,lat,lon,population,density,timezone,zips):
-    self.city = city
-    self.lat = lat
-    self.lon = lon
-    self.population = population
-    self.density = density
-    self.timezone = timezone
-    self.zips = zips
-
-  def __repr__(self):
-    return f'<City: {self.city}>'
-
-
-
-# line_count = 0
-# cities = []
-# for row in _reader_reader:
-#   if line_count == 0:
-#     line_count += 1
-#   else:
-#     c = City(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8])
-#     cities.append(c)
-#     line_count += 1
-
-def cityMaker():
-  cities = []
-  with open('cities.csv') as csv_file:
-    csv_reader = csv.reader(csv_file, delimiter=',')
-    line_count = 0
-    for row in csv_reader:
-      if line_count == 0:
-        line_count += 1
-      else:
-        c = City(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8])
-        cities.append(c)
-        line_count += 1
-  return cities
-
-# print(cities)
-# 
-# print(cities)
 cities = cityMaker()
-print(cities)
-printCSV()
+print(cities[10])
+# printCSV()
 
-
-#printing csv file contents formatted to screen:
-# for row in csv:
-  
-#   if line_count == 0:
-#     print(f"Column names are {', '.join(row)}") #first row of csv file are column headings
-#     line_count += 1  
-#   else:
-#     print(f'\nCity: {row[0]}, State: {row[1]}, County: {row[2]}\n')
-#     print(f'Latitude: {row[3]}, Longitude: {row[4]}\n')
-#     print(f'Population: {row[5]}, Density: {row[6]}\n')
-#     print(f'Timezone: {row[7]}\n')
-#     print(f'Zip codes: {row[8]}\n')
-#     # for zip in row[8]:
-#     #   print(zip)
-#     line_count += 1
-
-# print(f"processed {line_count} lines")
-
-
-
-  
 
 
 
