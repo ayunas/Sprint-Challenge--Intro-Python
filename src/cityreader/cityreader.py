@@ -1,5 +1,73 @@
 # Create a class to hold a city location. Call the class "City". It should have
 # fields for name, lat and lon (representing latitude and longitude).
+import csv
+
+class City:
+  def __init__(self,city,state,county,lat,lon,population,density,timezone,zips):
+    self.city = city
+    self.state = state
+    self.county = county
+    self.lat = lat
+    self.lon = lon
+    self.population = population
+    self.density = density
+    self.timezone = timezone
+    self.zips = zips
+
+  def __repr__(self):
+    return f'<City: {self.city}>'
+  
+  def __str__(self):
+    return f'''\nCity: {self.city}, State: {self.state}, County: {self.county}\n\nLatitude: {self.lat}, Longitude: {self.lon}\n\nPopulation: {self.population}, Density: {self.density}\n\nTimezone: {self.timezone}\n\nZip codes: {self.zips}\n\n'''
+        # print(f'\nCity: {self.city}, State: {self.state}, County: {self.county}\n')
+        # print(f'Latitude: {self.lat}, Longitude: {self.lon}\n')
+        # print(f'Population: {self.population}, Density: {self.density}\n')
+        # print(f'Timezone: {self.timezone}\n')
+        # print(f'Zip codes: {self.zips}\n')
+
+def cityMaker():
+  cities = []
+  with open('cities.csv') as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    line_count = 0
+    for row in csv_reader:
+      if line_count == 0:
+        line_count += 1
+      else:
+        c = City(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8])
+        cities.append(c)
+        line_count += 1
+  return cities
+
+def printCSV():
+  #printing csv file contents formatted to screen:
+  with open('cities.csv') as csv_file:
+    csv_reader = csv.reader(csv_file,delimiter=',')
+
+    line_count = 0
+    
+    for row in csv_reader:
+      # print(type(row))
+      if line_count == 0:
+        print(f"Column names are {', '.join(row)}") #first row of csv file are column headings
+        line_count += 1  
+      else:
+        print(f'\nCity: {row[0]}, State: {row[1]}, County: {row[2]}\n')
+        print(f'Latitude: {row[3]}, Longitude: {row[4]}\n')
+        print(f'Population: {row[5]}, Density: {row[6]}\n')
+        print(f'Timezone: {row[7]}\n')
+        print(f'Zip codes: {row[8]}\n')
+        # for zip in row[8]:
+        #   print(zip)
+        line_count += 1
+      
+    print(f"processed {line_count} lines")
+
+cities = cityMaker()
+print(cities[10])
+# printCSV()
+
+
 
 
 # We have a collection of US cities with population over 750,000 stored in the
@@ -14,20 +82,20 @@
 #
 # Note that the first line of the CSV is header that describes the fields--this
 # should not be loaded into a City object.
-cities = []
+# cities = []
 
-def cityreader(cities=[]):
-  # TODO Implement the functionality to read from the 'cities.csv' file
-  # For each city record, create a new City instance and add it to the 
-  # `cities` list
+# def cityreader(cities=[]):
+#   # TODO Implement the functionality to read from the 'cities.csv' file
+#   # For each city record, create a new City instance and add it to the 
+#   # `cities`list
     
-    return cities
+#     return cities
 
-cityreader(cities)
+# cityreader(cities)
 
-# Print the list of cities (name, lat, lon), 1 record per line.
-for c in cities:
-    print(c)
+# # Print the list of cities (name, lat, lon), 1 record per line.
+# for c in cities:
+#     print(c) 
 
 # STRETCH GOAL!
 #
